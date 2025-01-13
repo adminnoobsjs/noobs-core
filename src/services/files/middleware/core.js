@@ -103,6 +103,30 @@ module.exports = function (parameters) {
        fs.exists(filePath, callback)
     }
 
+    /**
+     * Is the object a file
+     * @param {String} path
+    */
+    _controller.isFile = function (path) {
+        return fs.statSync(path).isFile()
+     } 
+
+    /**
+     * Is the object a folder
+     * @param {String} path
+    */
+    _controller.isFolder = function (path) {
+        return fs.statSync(path).isDirectory();
+     } 
+
+    /**
+     * Return stats
+     * @param {String} path
+    */
+    _controller.stats = function (path) {
+        return fs.statSync(path)
+     } 
+
     return _controller;
 };
 

@@ -1,5 +1,6 @@
 'use strict';
 const express = require('express');
+const bodyParser = require('body-parser');
 
 /**
    * Initailise the cache api endpoint. The following endpoints are available
@@ -24,6 +25,8 @@ module.exports = function (serviceManager) {
 
         if (_interfaceManager != null) {
 
+            _interfaceManager.app().use(bodyParser.text({type:"*/*"}))
+
             // The cache has command
             _interfaceManager.app().route('/services/caching/api/has/:key').get(function (req, res) {
                 serviceManager.core.services.caching.has(req.params.key).then(exists => res.status(200).send(exists));
@@ -36,7 +39,7 @@ module.exports = function (serviceManager) {
 
             // The cache set command
             _interfaceManager.app().route('/services/caching/api/set/:key').post(function (req, res) {
-                serviceManager.core.services.caching.set(req.params.key, req.body.data)
+                serviceManager.core.services.caching.set(req.params.key, req.body)
                 res.status(200).send('success');
             });
 

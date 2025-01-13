@@ -22,6 +22,7 @@
   "homepage": "https://github.com/nooblyjs/noobly-core#readme",
   "dependencies": {
     "assert-strict": "*",
+    "axios": "^1.7.9",
     "config": "*",
     "cors": "*",
     "depd": "*",

@@ -176,23 +176,16 @@
           {
             "name": "key",
             "in": "path",
-            "description": "Add the information you want to log",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/logging"
-            }
+            "description": "Specify the key you want to check i",
+            "required": true
           }
-        ],
+        ], 
         "produces": [
           "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
           }
         }
       }
@@ -208,23 +201,16 @@
           {
             "name": "key",
             "in": "path",
-            "description": "Add the information you want to log",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/logging"
-            }
+            "description": "Add the cache key you want to retrieve",
+            "required": true
           }
         ],
         "produces": [
-          "application/json"
+          "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
           }
         }
       }
@@ -240,31 +226,21 @@
           {
             "name": "key",
             "in": "path",
-            "description": "Add the information you want to log",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/caching"
-            }
+            "description": "Add the information you want to cache",
+            "required": true
           },
           {
             "name": "data",
             "in": "body",
-            "description": "Add the information you want to log",
-            "schema": {
-              "$ref": "#/definitions/caching"
-            }
+            "description": "Add the information you want to log"
           }
         ],
-        "produces": [
-          "application/json"
+        "consumes": [
+          "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
           }
         }
       }
@@ -280,23 +256,16 @@
           {
             "name": "key",
             "in": "path",
-            "description": "Add the information you want to log",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/logging"
-            }
+            "description": "Set the key you want to delete",
+            "required": true
           }
         ],
         "produces": [
-          "application/json"
+          "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
           }
         }
       }
@@ -313,30 +282,20 @@
             "name": "queue",
             "in": "path",
             "description": "The queue to be dequeued from",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/queueing"
-            }
+            "required": true
           },
           {
             "name": "data",
             "in": "body",
-            "description": "Add the information you want to queue",
-            "schema": {
-              "$ref": "#/definitions/queueing"
-            }
+            "description": "Add the information you want to queue"
           }
         ],
-        "produces": [
-          "application/json"
+        "consumes": [
+          "application/test"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/queueing"
-            }
+            "description": "success"
           }
         }
       }
@@ -352,23 +311,16 @@
           {
             "name": "queue",
             "in": "path",
-            "description": "The queue to be added too",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "$ref": "#/definitions/queueing"
-            }
+            "description": "The queue to be dequeued",
+            "required": true
           }
         ],
         "produces": [
-          "application/json"
+          "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/queueing"
-            }
+            "description": "success"
           }
         }
       }

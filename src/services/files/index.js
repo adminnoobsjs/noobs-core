@@ -64,10 +64,10 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').create(filename, content, function (status) {
                         resolve(status);
                     })
-                });
+                }
+            );
         }
     }
-
 
     /**
      * Append to file
@@ -85,7 +85,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').append(filename, content, function (status) {
                         resolve(status);
                     })
-                });
+                }
+            );
         }
     }
 
@@ -105,7 +106,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').rename(filename, newfilename, function (status) {
                         resolve(status);
                     })
-                });
+                }
+            );
         }
     }
 
@@ -124,7 +126,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').delete(filename, function (status) {
                         resolve(status);
                     })
-                });
+                }
+            );
         }
     }
 
@@ -143,8 +146,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readFile(filename, function (data) {
                         resolve(data);
                     })
-                })
-            ;
+                }
+            );
         }
     }
 
@@ -163,7 +166,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readDirectory(directory, function (data) {
                         resolve(data);
                     })
-                });
+                }
+            );
         }
     }
 
@@ -181,9 +185,35 @@ module.exports = function (moduleManager) {
                 (resolve, reject) => {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').exists(filePath, function (exists) {
                         resolve(exists);
-                    })
+                    });
                 });
-        }
+            };
+    }   
+
+    /**
+     * Is the object a file
+     * @param {String} path
+    */
+    _serviceManager.isFile = function (path) {
+        _serviceManager.raiseEvent('event', { type: 'files-isfile', message: 'file isFile: ' + filePath, options: { filePath } });
+        return moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'isFile').isFile(filePath)
+    } 
+
+    /**
+     * Is the object a folder
+     * @param {String} path
+    */
+    _serviceManager.isFolder = function (path) {
+        _serviceManager.raiseEvent('event', { type: 'files-isfolder', message: 'folder isFolder: ' + filePath, options: { filePath } });
+        return moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'isFolder').isFile(filePath)
+    } 
+
+    /**
+     * Return stats
+     * @param {String} path
+    */
+    _serviceManager.stats = function (path) {
+        return moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'stats').stats(filePath)
     }
 
     // Use the default middleware

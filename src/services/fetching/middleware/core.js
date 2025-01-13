@@ -1,15 +1,13 @@
 'use strict';
-const https = require('https');
-const url = require('url'); 
-
+const axios = require("axios");
 
 /**
- * Data Fetching local provider
+ * The token class
  */
-module.exports = function (parameters) {
+module.exports = function (moduleManager) {
 
     /** Initiate the object */
-    var _controller = {};
+    var _serviceManager = {};
 
      /**
       * Enable a fetch request
@@ -18,32 +16,20 @@ module.exports = function (parameters) {
       * @param {object} callback 
       * @param {object} errorCallback 
       */
-     _controller.fetch = function (address, options, callback, errorCallback) {
-         var result = '';
+    _serviceManager.fetch = function (address, options, callback, errorCallback) {
+        var result = '';
+        const data = {
+            contents: [
+                { parts: [{ text: JSON.stringify(prompt) }] },
+            ],
+        };
 
-         const q = url.parse(address, true); 
-
-         // Perform api request
-         const req = https.request({
-             hostname: q.host,
-             port: q.port,
-             path: q.path ,
-             method: "GET",
-         }, res => {res.on('data', d => {
-                 result += d;
-                 callback(result);
-             });
-         });
+        axios.post(address, options.data, options.headers).then((response) => {
+            callback (response.data)
+        }).catch((error) => {
+            errorCallback(error.response ? error.response.data : error.message)
+        });
+    }
  
-         // On error
-         req.on('error', error => {
-             errorCallback(error);
-         });
- 
-         // End the request
-         req.end();
-     }
-
-    return _controller;
+    return _serviceManager;
 };
-
